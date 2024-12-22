@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Invoicing.Api", "Invoicing\Invoicing.Api.csproj", "{D65F3AED-AA42-4853-959A-19D965248365}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildingBlocks", "BuildingBlocks\BuildingBlocks.csproj", "{4FBA5B13-257D-4C19-81C4-27F90B1ED7B2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D65F3AED-AA42-4853-959A-19D965248365}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D65F3AED-AA42-4853-959A-19D965248365}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D65F3AED-AA42-4853-959A-19D965248365}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D65F3AED-AA42-4853-959A-19D965248365}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FBA5B13-257D-4C19-81C4-27F90B1ED7B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FBA5B13-257D-4C19-81C4-27F90B1ED7B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FBA5B13-257D-4C19-81C4-27F90B1ED7B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FBA5B13-257D-4C19-81C4-27F90B1ED7B2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
