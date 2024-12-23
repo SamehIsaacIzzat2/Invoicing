@@ -10,14 +10,13 @@
 </form>
 
 <script>
+    const apiUrl = "@Model.ApiBaseUrl";
     async function deleteInvoice() {
-        const invoiceId = document.getElementById('invoiceId').value;
+        const invoiceId =parseInt( document.getElementById('invoiceId').value );
 
         const response = await fetch(`${apiUrl}/Invoice`, {
             method: 'DELETE',
-            body:{
-                id: invoiceId
-            }
+             body: { "id": invoiceId}
         });
 
         if (response.ok) {

@@ -1,0 +1,60 @@
+﻿@page
+@model ListModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoices</title>
+</head>
+<body>
+    <h2>Invoices</h2>
+
+    <table id="invoicesTable" border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Customer Name</th>
+                <th>Invoice Date</th>
+                <th>Total Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data will be dynamically populated -->
+        </tbody>
+    </table>
+
+    <div>
+        <a asp-page="/Invoices/Create" class="btn btn-primary">Create New Invoice</a>
+        <a asp-page="/Invoices/Delete" class="btn btn-danger">Delete Invoice</a>
+    </div>
+
+    <script>
+        const apiUrl = "@Model.ApiBaseUrl"+"/Invoice";
+
+        // Fetch and display invoices
+        async function fetchInvoices() {
+            const response = await fetch(apiUrl);
+            const invoices = (await response.json()).invoiceRecords;
+
+            const tbody = document.querySelector("#invoicesTable tbody");
+            tbody.innerHTML = ""; // Clear existing rows
+
+            invoices.forEach(invoice => {
+                const row = `
+                    <tr>
+                        <td>${invoice.id}</td>
+                        <td>${invoice.customerName}</td>
+                        <td>${new Date(invoice.invoiceDate).toLocaleDateString()}</td>
+                        <td>${invoice.totalAmount}</td>
+                    </tr>`;
+                tbody.innerHTML += row;
+            });
+        }
+
+        // Load invoices on page load
+        fetchInvoices();
+    </script>
+</body>
+</html>

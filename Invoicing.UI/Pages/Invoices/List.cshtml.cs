@@ -1,17 +1,15 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Configuration;
 
 namespace Invoicing.UI.Pages.Invoices
 {
-    
-    public class DeleteModel : PageModel
+    public class ListModel : PageModel
     {
         private readonly IConfiguration _configuration;
 
         public string ApiBaseUrl { get; private set; }
 
-        public DeleteModel(IConfiguration configuration)
+        public ListModel(IConfiguration configuration)
         {
             _configuration = configuration;
         }

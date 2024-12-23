@@ -7,6 +7,17 @@ var builder = WebApplication.CreateBuilder(args);
 //Add services to the container
 var assembly = typeof(Program).Assembly;
 
+// Add CORS service to allow all origins
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 builder.Services.AddControllers();
 builder.Services.AddMediatR(configuration =>
 {
@@ -35,6 +46,8 @@ app.UseHealthChecks("/health",
     {
         ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
     });
+
+app.UseCors();
 
 app.UseRouting();
 app.MapControllers();
