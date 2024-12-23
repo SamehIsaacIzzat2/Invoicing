@@ -1,0 +1,71 @@
+﻿@page
+@model CreateModel
+
+<h2>Create Invoice</h2>
+
+<form id="invoiceForm">
+    <label>Customer Name:</label>
+    <input type="text" id="customerName" required /><br />
+
+    <label>Invoice Date:</label>
+    <input type="date" id="invoiceDate" required /><br />
+
+    <div id="items">
+        <h4>Items</h4>
+        <div class="item">
+            <label>Description:</label>
+            <input type="text" name="description" required />
+
+            <label>Amount:</label>
+            <input type="number" name="amount" step="0.01" required />
+        </div>
+    </div>
+
+    <button type="button" onclick="addItem()">Add Item</button>
+    <button type="button" onclick="submitForm()">Submit Invoice</button>
+</form>
+
+<script>
+    const apiUrl = "@Model.ApiBaseUrl";
+
+    function addItem() {
+        const itemsDiv = document.getElementById('items');
+        const newItem = document.createElement('div');
+        newItem.classList.add('item');
+        newItem.innerHTML = `
+            <label>Description:</label>
+            <input type="text" name="description" required />
+            <label>Amount:</label>
+            <input type="number" name="amount" step="0.01" required />
+            <button type="button" onclick="removeItem(this)">Remove</button>
+        `;
+        itemsDiv.appendChild(newItem);
+    }
+
+    function removeItem(button) {
+        button.parentElement.remove();
+    }
+
+    async function submitForm() {
+        const customerName = document.getElementById('customerName').value;
+        const invoiceDate = document.getElementById('invoiceDate').value;
+        const items = Array.from(document.querySelectorAll('#items .item')).map(item => ({
+            description: item.querySelector('input[name="description"]').value,
+            amount: parseFloat(item.querySelector('input[name="amount"]').value),
+        }));
+
+        const invoice = { customerName, invoiceDate, items };
+
+        const response = await fetch(`${apiUrl}/Invoice`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(invoice),
+        });
+
+        if (response.ok) {
+            alert('Invoice created successfully!');
+        } else {
+            alert('Failed to create invoice.');
+        }
+    }
+</script>

@@ -1,0 +1,29 @@
+﻿@page
+@model DeleteModel
+
+<h2>Delete Invoice</h2>
+
+<form id="deleteForm">
+    <label>Invoice ID:</label>
+    <input type="number" id="invoiceId" required />
+    <button type="button" onclick="deleteInvoice()">Delete Invoice</button>
+</form>
+
+<script>
+    async function deleteInvoice() {
+        const invoiceId = document.getElementById('invoiceId').value;
+
+        const response = await fetch(`${apiUrl}/Invoice`, {
+            method: 'DELETE',
+            body:{
+                id: invoiceId
+            }
+        });
+
+        if (response.ok) {
+            alert('Invoice deleted successfully!');
+        } else {
+            alert('Failed to delete invoice.');
+        }
+    }
+</script>
